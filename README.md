@@ -2,7 +2,7 @@
 
     [1] W. Diepeveen, D. Needell.  
     Manifold Learning with Normalizing Flows: Towards Regularity, Expressivity and Iso-Riemannian Geometry
-    arXiv preprint arXiv:xxxx.xxxx. 2025 MMM DD.
+    arXiv preprint arXiv:2505.08087. 2025 May 12.
 
 Setup
 -----
