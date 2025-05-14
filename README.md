@@ -1,4 +1,4 @@
-# iso-Riemannian geometry
+# Iso-Riemannian geometry
 
     [1] W. Diepeveen, D. Needell.  
     Manifold Learning with Normalizing Flows: Towards Regularity, Expressivity and Iso-Riemannian Geometry
