@@ -5,5 +5,5 @@ from src.manifolds.euclidean.vector.pullback.standard import StandardPullbackVec
 
 class AffineUnbendStandardPullbackVectorEuclidean(StandardPullbackVectorEuclidean):
 
-    def __init__(self, angle=torch.pi/4, delta=1., eta=0.5):
-        super().__init__(AffineUnbendVectorDiffeomorphism(angle, delta, eta))
+    def __init__(self, angle=torch.pi/4, eta=4.):
+        super().__init__(AffineUnbendVectorDiffeomorphism(angle, eta))

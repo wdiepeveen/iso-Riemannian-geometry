@@ -9,13 +9,13 @@ class PullbackVectorEuclidean(VectorEuclidean):
         self.phi = diffeomorphism 
         self.manifold = manifold
 
-    def barycentre(self, x):
+    def barycentre(self, x, tol=None, max_iter=None, step_size=None, red_coef=None):
         """
 
         :param x: N x d
         :return: d
         """
-        return self.phi.inverse(self.manifold.barycentre(self.phi.forward(x))[None])[0]
+        return self.phi.inverse(self.manifold.barycentre(self.phi.forward(x), tol=tol, max_iter=max_iter, step_size=step_size, red_coef=red_coef)[None])[0]
 
     def inner(self, x, X, Y):
         """
@@ -31,42 +31,83 @@ class PullbackVectorEuclidean(VectorEuclidean):
                                    self.phi.differential_forward((x[:, None].repeat(1,M,1)).reshape(-1, self.d), X.reshape(-1, self.d)).reshape(X.shape),
                                    self.phi.differential_forward((x[:, None].repeat(1,L,1)).reshape(-1, self.d), Y.reshape(-1, self.d)).reshape(Y.shape)
                                    )
+    
+    def norm(self, x, X):
+        """
+
+        :param x: N x d
+        :param X: N x M x d
+        :return: N x M
+        """
+        M = X.shape[1]
+        
+        phi_x = self.phi.forward(x)[:,None].repeat(1,M,1).reshape(-1, self.d)
+        phi_X = self.phi.differential_forward((x[:, None].repeat(1,M,1)).reshape(-1, self.d), X.reshape(-1, self.d)).reshape(X.shape)
+        return self.manifold.inner(phi_x, phi_X, phi_X).sqrt().reshape(-1, M)
 
     def geodesic(self, x, y, t):
         """
 
-        :param x: d or N x d
-        :param y: d or N x d
-        :param t: N or 1
-        :return: N x d
+        :param x: N x M x d
+        :param y: N x L x d
+        :param t: K or N x M x L x K
+        :return: N x M x L x K x d
         """
-        if len(t) == 1:
-            return self.phi.inverse(self.manifold.geodesic(self.phi.forward(x), self.phi.forward(y), t))
-        else:
-            return self.phi.inverse(self.manifold.geodesic(self.phi.forward(x[None])[0], self.phi.forward(y[None])[0], t))
+        N, M, d = x.shape
+        L = y.shape[1]
+        K = t.shape[-1]
+
+        # Flatten and map through phi
+        phi_x = self.phi.forward(x.reshape(-1, d)).reshape(N, M, d) 
+        phi_y = self.phi.forward(y.reshape(-1, d)).reshape(N, L, d) 
+
+        # Weighted combination in phi-space
+        phi_geo = self.manifold.geodesic(phi_x, phi_y, t)
+
+        # Flatten batch for single call to phi inverse
+        return self.phi.inverse(phi_geo.reshape(-1, d)).reshape(N, M, L, K, d)
             
-
-    def log(self, x, y):
+    def log(self, x, y): 
         """
 
-        :param x: d
-        :param y: N x d
-        :return: N x d
+        :param x: N x M x d
+        :param y: N x L x d
+        :return: N x M x L x d
         """
-        N = y.shape[0]
-        return self.phi.differential_inverse(self.phi.forward(x[None]).repeat(N,1),
-                                                self.manifold.log(self.phi.forward(x[None])[0], self.phi.forward(y))
-                                                )
+        N, M, d = x.shape
+        L = y.shape[1]
 
-    def exp(self, x, X):
+        # Flatten and map through phi
+        phi_x = self.phi.forward(x.reshape(-1, d)).reshape(N, M, d) 
+        phi_y = self.phi.forward(y.reshape(-1, d)).reshape(N, L, d) 
+
+        # log in phi-space
+        phi_log = self.manifold.log(phi_x, phi_y)
+
+        # Flatten batch for single call to differential phi inverse
+        return self.phi.differential_inverse(phi_x[:,:,None].repeat(1,1,L,1).reshape(-1, d),
+                                             phi_log.reshape(-1, d)
+                                             ).reshape(N, M, L, d)
+
+    def exp(self, x, X): 
         """
 
-        :param x: d
-        :param X: N x d
-        :return: N x d
+        :param x: N x d
+        :param X: N x M x d
+        :return: N x M x d
         """
-        N = X.shape[0]
-        return self.phi.inverse(self.manifold.exp(self.phi.forward(x[None])[0], self.phi.differential_forward(x[None].repeat(N,1), X)))
+        N, d = x.shape
+        M = X.shape[1]
+
+        # Flatten and map through phi
+        phi_x = self.phi.forward(x.reshape(-1, d)).reshape(N, d) 
+        phi_X = self.phi.differential_forward((x[:, None].repeat(1, M, 1)).reshape(-1, d), X.reshape(-1, d)).reshape(N, M, d)
+
+        # exp in phi-space
+        phi_exp = self.manifold.exp(phi_x, phi_X)
+
+        # Flatten batch for single call to phi inverse
+        return self.phi.inverse(phi_exp.reshape(-1, d)).reshape(N, M, d)
 
     def distance(self, x, y):
         """
@@ -75,21 +116,36 @@ class PullbackVectorEuclidean(VectorEuclidean):
         :param y: N x L x d
         :return: N x M x L
         """
-        return self.manifold.distance(self.phi.forward(x.reshape(-1, self.d)).reshape(x.shape), self.phi.forward(y.reshape(-1, self.d)).reshape(y.shape))
+        N, M, d = x.shape
+        L = y.shape[1]
+
+        # Flatten and map through phi
+        phi_x = self.phi.forward(x.reshape(-1, d)).reshape(N, M, d) 
+        phi_y = self.phi.forward(y.reshape(-1, d)).reshape(N, L, d) 
+
+        # distance in phi-space
+        return self.manifold.distance(phi_x, phi_y).reshape(N, M, L)
 
     def parallel_transport(self, x, X, y):
         """
 
-        :param x: d
-        :param X: N x d
-        :param y: d
-        :return: N x d
+        :param x: N x M x d
+        :param X: N x M x K x d
+        :param y: N x L x d
+        :return: N x M x L x K x d
         """
-        N = X.shape[0]
-        return self.phi.differential_inverse(self.phi.forward(y[None]).repeat(N,1),
-                                                self.manifold.parallel_transport(self.phi.forward(x[None])[0],
-                                                                                 self.phi.differential_forward(x[None].repeat(N,1), X),
-                                                                                 self.phi.forward(y[None])[0]
-                                                                                 )
-                                                )
-    
+        N, M, d = x.shape
+        L = y.shape[1]
+        K = X.shape[2]
+
+        # Flatten and map through phi
+        phi_x = self.phi.forward(x.reshape(-1, d)).reshape(N, M, d)
+        phi_y = self.phi.forward(y.reshape(-1, d)).reshape(N, L, d)
+        phi_X = self.phi.differential_forward((x[:, :, None].repeat(1, 1, K, 1)).reshape(-1, d), X.reshape(-1, d)).reshape(N, M, K, d)
+
+        # parallel transport in phi-space
+        phi_pt = self.manifold.parallel_transport(phi_x, phi_X, phi_y).reshape(N, M, L, K, d)
+
+        # Flatten batch for single call to differential phi inverse
+        return self.phi.differential_inverse((phi_y[:, None].repeat(1, M, 1, K, 1)).reshape(-1, d), phi_pt.reshape(-1, d)).reshape(N, M, L, K, d)
+        

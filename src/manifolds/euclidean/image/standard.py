@@ -28,21 +28,21 @@ class StandardImageEuclidean(ImageEuclidean):
         """
         return self.image_from_vector_euclidean.norm(x, X)
 
-    def barycentre(self, x):
+    def barycentre(self, x, tol=None, max_iter=None, step_size=None, red_coef=None):
         """
 
         :param x: N x (C x H x W)
         :return: (C x H x W)
         """
-        return self.image_from_vector_euclidean.barycentre(x)
+        return self.image_from_vector_euclidean.barycentre(x, tol=tol, max_iter=max_iter, step_size=step_size, red_coef=red_coef)
     
     def geodesic(self, x, y, t):
         """
 
-        :param x: (C x H x W) or N x (C x H x W)
-        :param y: (C x H x W) or N x (C x H x W)
-        :param t: N or 1
-        :return: N x (C x H x W)
+        :param x: N x M x (C x H x W) 
+        :param y: N x L x (C x H x W) 
+        :param t: K or N x M x L x K
+        :return: N x M x L x K x (C x H x W)
         """
         return self.image_from_vector_euclidean.geodesic(x, y, t)
             
@@ -50,18 +50,18 @@ class StandardImageEuclidean(ImageEuclidean):
     def log(self, x, y):
         """
 
-        :param x: (C x H x W)
-        :param y: N x (C x H x W)
-        :return: N x (C x H x W)
+        :param x: N x M x (C x H x W)
+        :param y: N x L x (C x H x W)
+        :return: N x M x L x (C x H x W)
         """
         return self.image_from_vector_euclidean.log(x, y)
 
     def exp(self, x, X):
         """
 
-        :param x: (C x H x W)
-        :param X: N x (C x H x W)
-        :return: N x (C x H x W)
+        :param x: N x (C x H x W)
+        :param X: N x M x (C x H x W)
+        :return: N x M x (C x H x W)
         """
         return self.image_from_vector_euclidean.exp(x, X)
     
@@ -77,22 +77,10 @@ class StandardImageEuclidean(ImageEuclidean):
     def parallel_transport(self, x, X, y):
         """
 
-        :param x: (C x H x W)
-        :param X: N x (C x H x W)
-        :param y: (C x H x W)
-        :return: N x (C x H x W)
+        :param x: N x M x (C x H x W)
+        :param X: N x M x K x (C x H x W)
+        :param y: N x L x (C x H x W)
+        :return: N x M x L x K x (C x H x W)
         """
         return self.image_from_vector_euclidean.parallel_transport(x, X, y)
     
-    def metric_tensor(self, x):
-        """
-        :return: N x (C x H x W) x (C x H x W)
-        """
-        return self.image_from_vector_euclidean.metric_tensor(x)
-    
-    def inverse_metric_tensor(self, x):
-        """
-        :return: N x (C x H x W) x (C x H x W)
-        """
-        N = x.shape[0]
-        return self.image_from_vector_euclidean.inverse_metric_tensor(x)

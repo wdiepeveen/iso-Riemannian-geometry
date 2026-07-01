@@ -27,7 +27,7 @@ class Manifold:
             "Subclasses should implement this"
         )
         
-    def barycentre(self, x):
+    def barycentre(self, x, tol=None, max_iter=None, step_size=None, red_coef=None):
         """
 
         :param x: N x [Mpoint]
@@ -40,10 +40,10 @@ class Manifold:
     def geodesic(self, x, y, t):
         """
 
-        :param x: [Mpoint] or N x [Mpoint]
-        :param y: [Mpoint] or N x [Mpoint]
-        :param t: N or 1
-        :return: N x [Mpoint]
+        :param x: N x M x [Mpoint]
+        :param y: N x L x [Mpoint]
+        :param t: K
+        :return: N x M x L x K x [Mpoint]
         """
         raise NotImplementedError(
             "Subclasses should implement this"
@@ -52,9 +52,9 @@ class Manifold:
     def log(self, x, y):
         """
 
-        :param x: [Mpoint]
-        :param y: N x [Mpoint]
-        :return: N x [Mvector]
+        :param x: N x M x [Mpoint]
+        :param y: N x L x [Mpoint]
+        :return: N x M x L x [Mvector]
         """
         raise NotImplementedError(
             "Subclasses should implement this"
@@ -63,9 +63,9 @@ class Manifold:
     def exp(self, x, X):
         """
 
-        :param x: [Mpoint]
-        :param X: N x [Mvector]
-        :return: N x [Mpoint]
+        :param x: N x [Mpoint]
+        :param X: N x M x [Mvector]
+        :return: N x M x [Mpoint]
         """
         raise NotImplementedError(
             "Subclasses should implement this"
@@ -85,10 +85,10 @@ class Manifold:
     def parallel_transport(self, x, X, y):
         """
 
-        :param x: [Mpoint]
-        :param X: N x [Mvector]
-        :param y: [Mpoint]
-        :return: N x [Mpoint]
+        :param x: N x M x [Mpoint]
+        :param X: N x M x K x [Mvector]
+        :param y: N x L x [Mpoint]
+        :return: N x M x L x K [Mvector]
         """
         raise NotImplementedError(
             "Subclasses should implement this"

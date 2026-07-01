@@ -27,7 +27,7 @@ class StandardVectorEuclidean(VectorEuclidean):
         """
         return torch.einsum("NMi,NMi->NM", X, X).sqrt()
 
-    def barycentre(self, x):
+    def barycentre(self, x, tol=None, max_iter=None, step_size=None, red_coef=None):
         """
 
         :param x: N x d
@@ -38,34 +38,33 @@ class StandardVectorEuclidean(VectorEuclidean):
     def geodesic(self, x, y, t):
         """
 
-        :param x: d or N x d
-        :param y: d or N x d
-        :param t: N or 1
-        :return: N x d
+        :param x: N x M x d
+        :param y: N x L x d
+        :param t: K or N x M x L x K
+        :return: N x M x L x K x d
         """
-        if len(t) == 1:
-            return (1 - t) * x + t * y
+        if t.ndim == 1:
+            return (1 - t[None,None,None,:,None]) * x[:,:,None,None] + t[None,None,None,:,None] * y[:,None,:,None]  
         else:
-            return (1 - t[:,None]) * x[None] + t[:,None] * y[None]
-            
+            return (1 - t[:, :, :, :, None]) * x[:, :, None, None] + t[:, :, :, :, None] * y[:, None, :, None]
 
     def log(self, x, y):
         """
 
-        :param x: d
-        :param y: N x d
-        :return: N x d
+        :param x: N x M x d
+        :param y: N x L x d
+        :return: N x M x L x d
         """
-        return y - x
+        return y[:,None,:] - x[:,:,None]
 
     def exp(self, x, X):
         """
 
-        :param x: d
-        :param X: N x d
-        :return: N x d
+        :param x: N x d
+        :param X: N x M x d
+        :return: N x M x d
         """
-        return x + X
+        return x[:,None] + X
     
     def distance(self, x, y):
         """
@@ -74,28 +73,15 @@ class StandardVectorEuclidean(VectorEuclidean):
         :param y: N x L x d
         :return: N x M x L
         """
-        return torch.sqrt(torch.sum((x[:,:,None] - y[:,None,:]) ** 2, -1) + 1e-8)
+        return torch.sqrt(torch.sum((x[:,:,None] - y[:,None,:]) ** 2, -1))
 
     def parallel_transport(self, x, X, y):
         """
 
-        :param x: d
-        :param X: N x d
-        :param y: d
-        :return: N x d
+        :param x: N x M x d
+        :param X: N x M x K x d
+        :param y: N x L x d
+        :return: N x M x L x K x d
         """
-        return X
+        return X[:,:,None,:].repeat(1, 1, y.shape[1], 1, 1)
     
-    def metric_tensor(self, x):
-        """
-        :return: N x d x d
-        """
-        N, _ = x.shape
-        return torch.diag_embed(torch.ones(self.d))[None] * torch.ones(N)[:,None,None]
-    
-    def inverse_metric_tensor(self, x):
-        """
-        :return: N x d x d
-        """
-        N, _ = x.shape
-        return torch.diag_embed(torch.ones(self.d))[None] * torch.ones(N)[:,None,None]

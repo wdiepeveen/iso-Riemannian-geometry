@@ -39,64 +39,59 @@ class ImageFromVectorEuclidean(Euclidean):
             X.reshape(N, M, self.C * self.H * self.W)
             )
 
-    def barycentre(self, x):
+    def barycentre(self, x, tol=None, max_iter=None, step_size=None, red_coef=None):
         """
 
         :param x: N x (C x H x W)
         :return: (C x H x W)
         """
         N = x.shape[0]
-        return self.vector_euclidean.barycentre(x.reshape(N, self.C * self.H * self.W)).reshape(self.C, self.H, self.W)
+        return self.vector_euclidean.barycentre(x.reshape(N, self.C * self.H * self.W), tol=tol, max_iter=max_iter, step_size=step_size, red_coef=red_coef).reshape(self.C, self.H, self.W)
     
     def geodesic(self, x, y, t):
         """
 
-        :param x: (C x H x W) or N x (C x H x W)
-        :param y: (C x H x W) or N x (C x H x W)
-        :param t: N or 1
-        :return: N x (C x H x W)
+        :param x: N x M x (C x H x W)
+        :param y: N x L x (C x H x W)
+        :param t: K or N x M x L x K
+        :return: N x M x L x K x (C x H x W)
         """
-        if len(t) == 1:
-            N = x.shape[0]
-            return self.vector_euclidean.geodesic(
-                x.reshape(N, self.C * self.H * self.W),
-                y.reshape(N, self.C * self.H * self.W),
+        N, M = x.shape[0:2]
+        L = y.shape[1]
+        K = t.shape[-1]
+        return self.vector_euclidean.geodesic(
+                x.reshape(N, M, self.C * self.H * self.W),
+                y.reshape(N, L, self.C * self.H * self.W),
                 t
-            ).reshape(N, self.C, self.H, self.W)
-        else:
-            N = len(t)
-            return self.vector_euclidean.geodesic(
-                x.reshape(self.C * self.H * self.W),
-                y.reshape(self.C * self.H * self.W),
-                t
-            ).reshape(N, self.C, self.H, self.W)
+                ).reshape(N, M, L, K, self.C, self.H, self.W)
             
 
     def log(self, x, y):
         """
 
-        :param x: (C x H x W)
-        :param y: N x (C x H x W)
-        :return: N x (C x H x W)
+        :param x: N x M x (C x H x W)
+        :param y: N x L x (C x H x W)
+        :return: N x M x L x (C x H x W)
         """
-        N = y.shape[0]
+        N, M = x.shape[0:2]
+        L = y.shape[1]
         return self.vector_euclidean.log(
-            x.reshape(self.C * self.H * self.W),
-            y.reshape(N, self.C * self.H * self.W)
-            ).reshape(N, self.C, self.H, self.W)
+            x.reshape(N, M, self.C * self.H * self.W),
+            y.reshape(N, L, self.C * self.H * self.W)
+            ).reshape(N, M, L, self.C, self.H, self.W)
 
     def exp(self, x, X):
         """
 
-        :param x: (C x H x W)
-        :param X: N x (C x H x W)
-        :return: N x (C x H x W)
+        :param x: N x (C x H x W)
+        :param X: N x M x (C x H x W)
+        :return: N x M x (C x H x W)
         """
-        N = X.shape[0]
+        N, M = X.shape[0:2]
         return self.vector_euclidean.exp(
-            x.reshape(self.C * self.H * self.W),
-            X.reshape(N, self.C * self.H * self.W)
-            ).reshape(N, self.C, self.H, self.W)
+            x.reshape(N, self.C * self.H * self.W),
+            X.reshape(N, M, self.C * self.H * self.W)
+            ).reshape(N, M, self.C, self.H, self.W)
     
     def distance(self, x, y):
         """
@@ -110,33 +105,22 @@ class ImageFromVectorEuclidean(Euclidean):
         return self.vector_euclidean.distance(
             x.reshape(N, M, self.C * self.H * self.W),
             y.reshape(N, L, self.C * self.H * self.W)
-        )
+            )
 
     def parallel_transport(self, x, X, y):
         """
 
-        :param x: (C x H x W)
-        :param X: N x (C x H x W)
-        :param y: (C x H x W)
-        :return: N x (C x H x W)
+        :param x: N x M x (C x H x W)
+        :param X: N x M x K x (C x H x W)
+        :param y: N x L x (C x H x W)
+        :return: N x M x L x K x (C x H x W)
         """
-        N = X.shape[0]
+        N, M = x.shape[0:2]
+        L = y.shape[1]
+        K = X.shape[2]
         return self.vector_euclidean.parallel_transport(
-            x.reshape(self.C * self.H * self.W),
-            X.reshape(N, self.C * self.H * self.W),
-            y.reshape(self.C * self.H * self.W)
-        ).reshape(N, self.C, self.H, self.W)
+            x.reshape(N, M, self.C * self.H * self.W),
+            X.reshape(N, M, K, self.C * self.H * self.W),
+            y.reshape(N, L, self.C * self.H * self.W)
+            ).reshape(N, N, L, K, self.C, self.H, self.W)
     
-    def metric_tensor(self, x):
-        """
-        :return: N x (C x H x W) x (C x H x W)
-        """
-        N = x.shape[0]
-        return self.vector_euclidean.metric_tensor(x.reshape(N, self.C * self.H * self.W)).reshape(N, self.C, self.H, self.W, self.C, self.H, self.W)
-    
-    def inverse_metric_tensor(self, x):
-        """
-        :return: N x (C x H x W) x (C x H x W)
-        """
-        N = x.shape[0]
-        return self.vector_euclidean.inverse_metric_tensor(x.reshape(N, self.C * self.H * self.W)).reshape(N, self.C, self.H, self.W, self.C, self.H, self.W)

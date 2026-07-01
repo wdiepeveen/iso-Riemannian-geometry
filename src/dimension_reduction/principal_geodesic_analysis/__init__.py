@@ -11,14 +11,14 @@ class l2PGASolver(DimensionReductionSolver):
         self.base_point = base_point
 
         with torch.no_grad():
-            self.log_x_data = self.euclidean.log(self.base_point, self.data).detach()  # ∈ R^{n x d}
+            self.log_x_data = self.euclidean.log(self.base_point[None,None], self.data[None])[0,0].detach()  # ∈ R^{n x d}
 
     def solve(self, rank, discard_highest_error=None):
         with torch.no_grad():
             print(f"Computing rank {rank} approximation on tangent space")
             Xi = self.get_Xi(rank)
             print(f"Computing rank {rank} approximation on euclidean space")
-            exp_x_Xi = self.euclidean.exp(self.base_point, Xi).detach()
+            exp_x_Xi = self.euclidean.exp(self.base_point[None], Xi[None])[0].detach()
             print(f"Computing rank {rank} errors")
             errors = ((self.data - exp_x_Xi)**2).sum(tuple(range(1, self.data.dim())))
 
