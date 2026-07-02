@@ -1,13 +1,14 @@
 %!PS-Adobe-3.0 EPSF-3.0
+%%LanguageLevel: 3
 %%Title: iso-geodesic.eps
-%%Creator: Matplotlib v3.7.5, https://matplotlib.org/
-%%CreationDate: Mon May 12 11:19:33 2025
+%%Creator: Matplotlib v3.11.0, https://matplotlib.org/
+%%CreationDate: Thu Jul  2 09:14:51 2026
 %%Orientation: portrait
-%%BoundingBox: 75 223 537 569
-%%HiResBoundingBox: 75.600000 223.200000 536.400000 568.800000
+%%BoundingBox: 0 0 461 346
+%%HiResBoundingBox: 0.000000 0.000000 460.800000 345.600000
 %%EndComments
 %%BeginProlog
-/mpldict 11 dict def
+/mpldict 10 dict def
 mpldict begin
 /_d { bind def } bind def
 /m { moveto } _d
@@ -16,36 +17,31 @@ mpldict begin
 /c { curveto } _d
 /cl { closepath } _d
 /ce { closepath eofill } _d
-/box {
-      m
-      1 index 0 r
-      0 exch r
-      neg 0 r
-      cl
-    } _d
-/clipbox {
-      box
-      clip
-      newpath
-    } _d
 /sc { setcachedevice } _d
 %!PS-Adobe-3.0 Resource-Font
 %%Creator: Converted from TrueType to Type 3 by Matplotlib.
 10 dict begin
-/FontName /DejaVuSans def
+/FontName /DejaVuSans-0 def
 /PaintType 0 def
 /FontMatrix [0.00048828125 0 0 0.00048828125 0 0] def
 /FontBBox [-2090 -948 3673 2524] def
 /FontType 3 def
-/Encoding [/period /zero /one /minus /five] def
-/CharStrings 6 dict dup begin
+/Encoding [/one /zero /period /five] def
+/CharStrings 5 dict dup begin
 /.notdef 0 def
-/period{651 0 219 0 430 254 sc
-219 254 m
-430 254 l
-430 0 l
-219 0 l
-219 254 l
+/one{1303 0 225 0 1114 1493 sc
+254 170 m
+584 170 l
+584 1309 l
+225 1237 l
+225 1421 l
+582 1493 l
+784 1493 l
+784 170 l
+1114 170 l
+1114 0 l
+254 0 l
+254 170 l
 
 ce} _d
 /zero{1303 0 135 -29 1167 1520 sc
@@ -70,27 +66,12 @@ ce} _d
 356 1454 484 1520 651 1520 c
 
 ce} _d
-/one{1303 0 225 0 1114 1493 sc
-254 170 m
-584 170 l
-584 1309 l
-225 1237 l
-225 1421 l
-582 1493 l
-784 1493 l
-784 170 l
-1114 170 l
-1114 0 l
-254 0 l
-254 170 l
-
-ce} _d
-/minus{1716 0 217 557 1499 727 sc
-217 727 m
-1499 727 l
-1499 557 l
-217 557 l
-217 727 l
+/period{651 0 219 0 430 254 sc
+219 254 m
+430 254 l
+430 0 l
+219 0 l
+219 254 l
 
 ce} _d
 /five{1303 0 158 -29 1124 1493 sc
@@ -135,18 +116,53 @@ end readonly def
 } _d
 
 FontName currentdict end definefont pop
+%!PS-Adobe-3.0 Resource-Font
+%%Creator: Converted from TrueType to Type 3 by Matplotlib.
+10 dict begin
+/FontName /DejaVuSans-1 def
+/PaintType 0 def
+/FontMatrix [0.00048828125 0 0 0.00048828125 0 0] def
+/FontBBox [-2090 -948 3673 2524] def
+/FontType 3 def
+/Encoding [/minus] def
+/CharStrings 2 dict dup begin
+/.notdef 0 def
+/minus{1716 0 217 557 1499 727 sc
+217 727 m
+1499 727 l
+1499 557 l
+217 557 l
+217 727 l
+
+ce} _d
+end readonly def
+
+/BuildGlyph {
+ exch begin
+ CharStrings exch
+ 2 copy known not {pop /.notdef} if
+ true 3 1 roll get exec
+ end
+} _d
+
+/BuildChar {
+ 1 index /Encoding get exch get
+ 1 index /BuildGlyph get exec
+} _d
+
+FontName currentdict end definefont pop
 end
 %%EndProlog
 mpldict begin
-75.6 223.2 translate
-460.8 345.6 0 0 clipbox
+0 0 translate
+0 0 460.8 345.6 rectclip
 gsave
 0 0 m
 460.8 0 l
 460.8 345.6 l
 0 345.6 l
 cl
-1.000 setgray
+1 setgray
 fill
 grestore
 gsave
@@ -155,30 +171,30 @@ gsave
 369.216 304.128 l
 103.104 304.128 l
 cl
-1.000 setgray
+1 setgray
 fill
 grestore
-1.000 setlinewidth
+1 setlinewidth
 0 setlinejoin
 0 setlinecap
 [] 0 setdash
-0.950 setgray
+0.95 setgray
 gsave
-114.356072 118.213976 m
-209.218651 195.805569 l
-208.306953 270.819311 l
-110.241547 198.109318 l
+114.356061 118.214005 m
+209.218603 195.805564 l
+208.306903 270.819304 l
+110.241536 198.109343 l
 gsave
 fill
 grestore
 stroke
 grestore
-0.900 setgray
+0.9 setgray
 gsave
-209.218651 195.805569 m
-360.257978 152.858131 l
-364.052488 230.625383 l
-208.306953 270.819311 l
+209.218603 195.805564 m
+360.257996 152.858106 l
+364.052506 230.625358 l
+208.306903 270.819304 l
 gsave
 fill
 grestore
@@ -186,240 +202,241 @@ stroke
 grestore
 0.925 setgray
 gsave
-114.356072 118.213976 m
-275.17716 66.373411 l
-360.257978 152.858131 l
-209.218651 195.805569 l
+114.356061 118.214005 m
+275.177216 66.37342 l
+360.257996 152.858106 l
+209.218603 195.805564 l
 gsave
 fill
 grestore
 stroke
 grestore
-0.800 setlinewidth
+0.8 setlinewidth
 1 setlinejoin
+0.69 setgray
+gsave
+124.026647 115.096698 m
+218.344621 193.210616 l
+217.703268 268.394343 l
+stroke
+grestore
+gsave
+192.613067 92.987915 m
+282.908174 174.852224 l
+284.230859 251.225278 l
+stroke
+grestore
+gsave
+264.693617 69.752801 m
+350.458889 155.644444 l
+353.933079 233.236922 l
+stroke
+grestore
+gsave
+117.056978 203.16261 m
+120.931348 123.592174 l
+281.102545 72.396523 l
+stroke
+grestore
+gsave
+161.587183 236.179256 m
+163.956925 158.784374 l
+319.771723 111.703775 l
+stroke
+grestore
+gsave
+202.595893 266.58491 m
+203.679183 191.274669 l
+355.313579 147.832103 l
+stroke
+grestore
+gsave
+360.492548 157.665185 m
+209.162164 200.44934 l
+114.102033 123.146697 l
+stroke
+grestore
+gsave
+362.135618 191.339369 m
+208.767109 232.954048 l
+112.321404 157.722721 l
+stroke
+grestore
+gsave
+363.824026 225.942724 m
+208.361718 266.309195 l
+110.489584 193.292776 l
+stroke
+grestore
 2 setlinecap
-0.000 setgray
+0 setgray
 gsave
-114.356072 118.213976 m
-275.17716 66.373411 l
-stroke
-grestore
-0 setlinecap
-0.690 setgray
-gsave
-124.02665 115.096672 m
-218.344662 193.210623 l
-217.70331 268.394352 l
+114.356061 118.214005 m
+275.177216 66.37342 l
 stroke
 grestore
 gsave
-192.613044 92.987896 m
-282.908189 174.852239 l
-284.230874 251.225294 l
+124.853147 115.781203 m
+122.369826 113.724523 l
 stroke
 grestore
-gsave
-264.693566 69.75279 m
-350.458876 155.644467 l
-353.933065 233.236946 l
-stroke
-grestore
-2 setlinecap
-0.000 setgray
-gsave
-124.85315 115.781177 m
-122.369828 113.724496 l
-stroke
-grestore
-/DejaVuSans 20.000 selectfont
+/DejaVuSans-1 20.000 selectfont
 gsave
 
-100.968 86.2832 translate
+100.968 86.2911 translate
 0 rotate
 0 0 m /minus glyphshow
-16.7578 0 m /one glyphshow
 grestore
-gsave
-193.406002 93.706815 m
-191.02337 91.546649 l
-stroke
-grestore
-/DejaVuSans 20.000 selectfont
+/DejaVuSans-0 20.000 selectfont
 gsave
 
-178.106 63.7129 translate
+100.968 86.2911 translate
+0 rotate
+16.7656 0 m /one glyphshow
+grestore
+gsave
+193.406024 93.706834 m
+191.023394 91.546668 l
+stroke
+grestore
+/DejaVuSans-0 20.000 selectfont
+gsave
+
+178.106 63.7207 translate
 0 rotate
 0 0 m /zero glyphshow
 grestore
 gsave
-265.44845 70.508786 m
-263.180129 68.237123 l
+265.448501 70.508796 m
+263.18018 68.237134 l
 stroke
 grestore
-/DejaVuSans 20.000 selectfont
+/DejaVuSans-0 20.000 selectfont
 gsave
 
-250.385 39.9863 translate
+250.385 39.9941 translate
 0 rotate
 0 0 m /one glyphshow
 grestore
 gsave
-360.257978 152.858131 m
-275.17716 66.373411 l
-stroke
-grestore
-0 setlinecap
-0.690 setgray
-gsave
-117.057045 203.162627 m
-120.931412 123.592189 l
-281.102539 72.396562 l
+360.257996 152.858106 m
+275.177216 66.37342 l
 stroke
 grestore
 gsave
-161.587229 236.179259 m
-163.95697 158.784374 l
-319.771701 111.703797 l
+279.747391 72.829672 m
+283.816634 71.529016 l
 stroke
 grestore
-gsave
-202.595921 266.584902 m
-203.679211 191.274657 l
-355.313543 147.832109 l
-stroke
-grestore
-2 setlinecap
-0.000 setgray
-gsave
-279.747385 72.829711 m
-283.816626 71.529056 l
-stroke
-grestore
-/DejaVuSans 20.000 selectfont
+/DejaVuSans-1 20.000 selectfont
 gsave
 
-280.336 46.053 translate
+280.336 46.0608 translate
 0 rotate
 0 0 m /minus glyphshow
-16.7578 0 m /one glyphshow
 grestore
-gsave
-318.456429 112.101216 m
-322.40576 110.907897 l
-stroke
-grestore
-/DejaVuSans 20.000 selectfont
+/DejaVuSans-0 20.000 selectfont
 gsave
 
-326.874 85.9079 translate
+280.336 46.0608 translate
+0 rotate
+16.7656 0 m /one glyphshow
+grestore
+gsave
+318.456451 112.101195 m
+322.405783 110.907875 l
+stroke
+grestore
+/DejaVuSans-0 20.000 selectfont
+gsave
+
+326.874 85.9157 translate
 0 rotate
 0 0 m /zero glyphshow
 grestore
 gsave
-354.036264 148.198044 m
-357.871378 147.099301 l
+354.036299 148.198038 m
+357.871415 147.099295 l
 stroke
 grestore
-/DejaVuSans 20.000 selectfont
+/DejaVuSans-0 20.000 selectfont
 gsave
 
-361.937 122.533 translate
+361.937 122.541 translate
 0 rotate
 0 0 m /one glyphshow
 grestore
 gsave
-360.257978 152.858131 m
-364.052488 230.625383 l
-stroke
-grestore
-0 setlinecap
-0.690 setgray
-gsave
-360.492532 157.665237 m
-209.162212 200.449371 l
-114.102042 123.146697 l
+360.257996 152.858106 m
+364.052506 230.625358 l
 stroke
 grestore
 gsave
-362.135601 191.339408 m
-208.767157 232.954067 l
-112.321414 157.722708 l
+359.21808 158.025503 m
+363.044739 156.943629 l
 stroke
 grestore
-gsave
-363.824007 225.942749 m
-208.361767 266.309201 l
-110.489595 193.292751 l
-stroke
-grestore
-2 setlinecap
-0.000 setgray
-gsave
-359.218064 158.025555 m
-363.044722 156.943682 l
-stroke
-grestore
-/DejaVuSans 20.000 selectfont
+/DejaVuSans-0 20.000 selectfont
 gsave
 
-364.174 145.205 translate
+364.174 145.213 translate
 0 rotate
 0 0 m /zero glyphshow
-12.7246 0 m /period glyphshow
-19.082 0 m /zero glyphshow
+12.7188 0 m /period glyphshow
+19.0781 0 m /zero glyphshow
 grestore
 gsave
-360.843089 191.690116 m
-364.723971 190.637086 l
+360.843106 191.690077 m
+364.723989 190.637046 l
 stroke
 grestore
-/DejaVuSans 20.000 selectfont
+/DejaVuSans-0 20.000 selectfont
 gsave
 
-366.077 178.806 translate
+366.077 178.814 translate
 0 rotate
 0 0 m /zero glyphshow
-12.7246 0 m /period glyphshow
-19.082 0 m /five glyphshow
+12.7188 0 m /period glyphshow
+19.0781 0 m /five glyphshow
 grestore
 gsave
-362.512934 226.283175 m
-366.449596 225.261004 l
+362.512951 226.283151 m
+366.449616 225.260978 l
 stroke
 grestore
-/DejaVuSans 20.000 selectfont
+/DejaVuSans-0 20.000 selectfont
 gsave
 
-368.033 213.331 translate
+368.033 213.339 translate
 0 rotate
 0 0 m /one glyphshow
-12.7246 0 m /period glyphshow
-19.082 0 m /zero glyphshow
+12.7188 0 m /period glyphshow
+19.0781 0 m /zero glyphshow
 grestore
-1.500 setlinewidth
-1.000 0.498 0.055 setrgbcolor
+1.5 setlinewidth
+1 0.498 0.055 setrgbcolor
 gsave
-266.112 266.112 103.104 38.016 clipbox
-277.72 174.825633 m
-275.827407 179.567266 l
-274.162157 184.771444 l
-272.72431 190.414193 l
-271.440278 196.375281 l
-270.087717 202.351999 l
-268.16824 207.640333 l
-264.779079 210.665983 l
-259.366547 209.504463 l
-252.837295 204.77843 l
-246.029627 198.219719 l
-239.233688 190.61229 l
-232.62628 182.034383 l
-226.461946 172.262237 l
-221.035948 161.389869 l
-216.343897 149.946925 l
-212.070755 138.338639 l
-207.86992 126.718383 l
-203.49226 115.146966 l
-198.801712 103.676518 l
+103.104 38.016 266.112 266.112 rectclip
+277.720012 174.825586 m
+275.828044 179.56227 l
+274.165063 184.763863 l
+272.731053 190.406095 l
+271.451966 196.368102 l
+270.104817 202.3463 l
+268.190648 207.6359 l
+264.806155 210.661908 l
+259.397078 209.499113 l
+252.870296 204.770856 l
+246.064473 198.209852 l
+239.269672 190.600325 l
+232.662174 182.020964 l
+226.495895 172.2494 l
+221.065194 161.379252 l
+216.36647 149.938889 l
+212.086288 138.333029 l
+207.879016 126.715 l
+203.496143 115.14556 l
+198.801685 103.676549 l
 stroke
 grestore
 /p0_0 {
@@ -437,10 +454,10 @@ translate
 cl
 
 } bind def
-1.000 setlinewidth
+1 setlinewidth
 0 setlinecap
 gsave
-266.112 266.112 103.104 38.016 clipbox
+103.104 38.016 266.112 266.112 rectclip
 277.72 174.826 p0_0
 gsave
 fill
@@ -448,143 +465,143 @@ grestore
 stroke
 grestore
 gsave
-266.112 266.112 103.104 38.016 clipbox
-275.827 179.567 p0_0
+103.104 38.016 266.112 266.112 rectclip
+275.828 179.562 p0_0
 gsave
 fill
 grestore
 stroke
 grestore
 gsave
-266.112 266.112 103.104 38.016 clipbox
-274.162 184.771 p0_0
+103.104 38.016 266.112 266.112 rectclip
+274.165 184.764 p0_0
 gsave
 fill
 grestore
 stroke
 grestore
 gsave
-266.112 266.112 103.104 38.016 clipbox
-272.724 190.414 p0_0
+103.104 38.016 266.112 266.112 rectclip
+272.731 190.406 p0_0
 gsave
 fill
 grestore
 stroke
 grestore
 gsave
-266.112 266.112 103.104 38.016 clipbox
-271.44 196.375 p0_0
+103.104 38.016 266.112 266.112 rectclip
+271.452 196.368 p0_0
 gsave
 fill
 grestore
 stroke
 grestore
 gsave
-266.112 266.112 103.104 38.016 clipbox
-270.088 202.352 p0_0
+103.104 38.016 266.112 266.112 rectclip
+270.105 202.346 p0_0
 gsave
 fill
 grestore
 stroke
 grestore
 gsave
-266.112 266.112 103.104 38.016 clipbox
-268.168 207.64 p0_0
+103.104 38.016 266.112 266.112 rectclip
+268.191 207.636 p0_0
 gsave
 fill
 grestore
 stroke
 grestore
 gsave
-266.112 266.112 103.104 38.016 clipbox
-264.779 210.666 p0_0
+103.104 38.016 266.112 266.112 rectclip
+264.806 210.662 p0_0
 gsave
 fill
 grestore
 stroke
 grestore
 gsave
-266.112 266.112 103.104 38.016 clipbox
-259.367 209.504 p0_0
+103.104 38.016 266.112 266.112 rectclip
+259.397 209.499 p0_0
 gsave
 fill
 grestore
 stroke
 grestore
 gsave
-266.112 266.112 103.104 38.016 clipbox
-252.837 204.778 p0_0
+103.104 38.016 266.112 266.112 rectclip
+252.87 204.771 p0_0
 gsave
 fill
 grestore
 stroke
 grestore
 gsave
-266.112 266.112 103.104 38.016 clipbox
-246.03 198.22 p0_0
+103.104 38.016 266.112 266.112 rectclip
+246.064 198.21 p0_0
 gsave
 fill
 grestore
 stroke
 grestore
 gsave
-266.112 266.112 103.104 38.016 clipbox
-239.234 190.612 p0_0
+103.104 38.016 266.112 266.112 rectclip
+239.27 190.6 p0_0
 gsave
 fill
 grestore
 stroke
 grestore
 gsave
-266.112 266.112 103.104 38.016 clipbox
-232.626 182.034 p0_0
+103.104 38.016 266.112 266.112 rectclip
+232.662 182.021 p0_0
 gsave
 fill
 grestore
 stroke
 grestore
 gsave
-266.112 266.112 103.104 38.016 clipbox
-226.462 172.262 p0_0
+103.104 38.016 266.112 266.112 rectclip
+226.496 172.249 p0_0
 gsave
 fill
 grestore
 stroke
 grestore
 gsave
-266.112 266.112 103.104 38.016 clipbox
-203.492 115.147 p0_0
+103.104 38.016 266.112 266.112 rectclip
+203.496 115.146 p0_0
 gsave
 fill
 grestore
 stroke
 grestore
 gsave
-266.112 266.112 103.104 38.016 clipbox
-207.87 126.718 p0_0
+103.104 38.016 266.112 266.112 rectclip
+207.879 126.715 p0_0
 gsave
 fill
 grestore
 stroke
 grestore
 gsave
-266.112 266.112 103.104 38.016 clipbox
-221.036 161.39 p0_0
+103.104 38.016 266.112 266.112 rectclip
+221.065 161.379 p0_0
 gsave
 fill
 grestore
 stroke
 grestore
 gsave
-266.112 266.112 103.104 38.016 clipbox
-212.071 138.339 p0_0
+103.104 38.016 266.112 266.112 rectclip
+212.086 138.333 p0_0
 gsave
 fill
 grestore
 stroke
 grestore
 gsave
-266.112 266.112 103.104 38.016 clipbox
+103.104 38.016 266.112 266.112 rectclip
 198.802 103.677 p0_0
 gsave
 fill
@@ -592,8 +609,8 @@ grestore
 stroke
 grestore
 gsave
-266.112 266.112 103.104 38.016 clipbox
-216.344 149.947 p0_0
+103.104 38.016 266.112 266.112 rectclip
+216.366 149.939 p0_0
 gsave
 fill
 grestore
@@ -616,7 +633,7 @@ cl
 } bind def
 0.122 0.467 0.706 setrgbcolor
 gsave
-266.112 266.112 103.104 38.016 clipbox
+103.104 38.016 266.112 266.112 rectclip
 241.756 180.977 p1_0
 gsave
 fill
@@ -624,7 +641,7 @@ grestore
 stroke
 grestore
 gsave
-266.112 266.112 103.104 38.016 clipbox
+103.104 38.016 266.112 266.112 rectclip
 247.105 182.232 p1_0
 gsave
 fill
@@ -632,7 +649,7 @@ grestore
 stroke
 grestore
 gsave
-266.112 266.112 103.104 38.016 clipbox
+103.104 38.016 266.112 266.112 rectclip
 256.19 179.755 p1_0
 gsave
 fill
@@ -640,7 +657,7 @@ grestore
 stroke
 grestore
 gsave
-266.112 266.112 103.104 38.016 clipbox
+103.104 38.016 266.112 266.112 rectclip
 256.66 182.406 p1_0
 gsave
 fill
@@ -648,7 +665,7 @@ grestore
 stroke
 grestore
 gsave
-266.112 266.112 103.104 38.016 clipbox
+103.104 38.016 266.112 266.112 rectclip
 220.854 181.466 p1_0
 gsave
 fill
@@ -656,7 +673,7 @@ grestore
 stroke
 grestore
 gsave
-266.112 266.112 103.104 38.016 clipbox
+103.104 38.016 266.112 266.112 rectclip
 260.994 189.561 p1_0
 gsave
 fill
@@ -664,7 +681,7 @@ grestore
 stroke
 grestore
 gsave
-266.112 266.112 103.104 38.016 clipbox
+103.104 38.016 266.112 266.112 rectclip
 263.188 191.169 p1_0
 gsave
 fill
@@ -672,7 +689,7 @@ grestore
 stroke
 grestore
 gsave
-266.112 266.112 103.104 38.016 clipbox
+103.104 38.016 266.112 266.112 rectclip
 266.608 190.354 p1_0
 gsave
 fill
@@ -680,7 +697,7 @@ grestore
 stroke
 grestore
 gsave
-266.112 266.112 103.104 38.016 clipbox
+103.104 38.016 266.112 266.112 rectclip
 260.563 193.724 p1_0
 gsave
 fill
@@ -688,7 +705,7 @@ grestore
 stroke
 grestore
 gsave
-266.112 266.112 103.104 38.016 clipbox
+103.104 38.016 266.112 266.112 rectclip
 224.278 201.811 p1_0
 gsave
 fill
@@ -696,7 +713,7 @@ grestore
 stroke
 grestore
 gsave
-266.112 266.112 103.104 38.016 clipbox
+103.104 38.016 266.112 266.112 rectclip
 238.288 204.825 p1_0
 gsave
 fill
@@ -704,7 +721,7 @@ grestore
 stroke
 grestore
 gsave
-266.112 266.112 103.104 38.016 clipbox
+103.104 38.016 266.112 266.112 rectclip
 197.705 191.461 p1_0
 gsave
 fill
@@ -712,7 +729,7 @@ grestore
 stroke
 grestore
 gsave
-266.112 266.112 103.104 38.016 clipbox
+103.104 38.016 266.112 266.112 rectclip
 185.506 180.449 p1_0
 gsave
 fill
@@ -720,7 +737,7 @@ grestore
 stroke
 grestore
 gsave
-266.112 266.112 103.104 38.016 clipbox
+103.104 38.016 266.112 266.112 rectclip
 174.519 162.007 p1_0
 gsave
 fill
@@ -728,7 +745,7 @@ grestore
 stroke
 grestore
 gsave
-266.112 266.112 103.104 38.016 clipbox
+103.104 38.016 266.112 266.112 rectclip
 262.716 206.649 p1_0
 gsave
 fill
@@ -736,7 +753,7 @@ grestore
 stroke
 grestore
 gsave
-266.112 266.112 103.104 38.016 clipbox
+103.104 38.016 266.112 266.112 rectclip
 182.622 181.615 p1_0
 gsave
 fill
@@ -744,7 +761,7 @@ grestore
 stroke
 grestore
 gsave
-266.112 266.112 103.104 38.016 clipbox
+103.104 38.016 266.112 266.112 rectclip
 213.919 209.254 p1_0
 gsave
 fill
@@ -752,7 +769,7 @@ grestore
 stroke
 grestore
 gsave
-266.112 266.112 103.104 38.016 clipbox
+103.104 38.016 266.112 266.112 rectclip
 218.557 211.147 p1_0
 gsave
 fill
@@ -760,7 +777,7 @@ grestore
 stroke
 grestore
 gsave
-266.112 266.112 103.104 38.016 clipbox
+103.104 38.016 266.112 266.112 rectclip
 298.316 188.04 p1_0
 gsave
 fill
@@ -768,7 +785,7 @@ grestore
 stroke
 grestore
 gsave
-266.112 266.112 103.104 38.016 clipbox
+103.104 38.016 266.112 266.112 rectclip
 186.825 195.619 p1_0
 gsave
 fill
@@ -776,7 +793,7 @@ grestore
 stroke
 grestore
 gsave
-266.112 266.112 103.104 38.016 clipbox
+103.104 38.016 266.112 266.112 rectclip
 176.862 183.841 p1_0
 gsave
 fill
@@ -784,7 +801,7 @@ grestore
 stroke
 grestore
 gsave
-266.112 266.112 103.104 38.016 clipbox
+103.104 38.016 266.112 266.112 rectclip
 303.939 182.356 p1_0
 gsave
 fill
@@ -792,7 +809,7 @@ grestore
 stroke
 grestore
 gsave
-266.112 266.112 103.104 38.016 clipbox
+103.104 38.016 266.112 266.112 rectclip
 315.429 153.577 p1_0
 gsave
 fill
@@ -800,7 +817,7 @@ grestore
 stroke
 grestore
 gsave
-266.112 266.112 103.104 38.016 clipbox
+103.104 38.016 266.112 266.112 rectclip
 275.533 210.066 p1_0
 gsave
 fill
@@ -808,7 +825,7 @@ grestore
 stroke
 grestore
 gsave
-266.112 266.112 103.104 38.016 clipbox
+103.104 38.016 266.112 266.112 rectclip
 297.345 193.556 p1_0
 gsave
 fill
@@ -816,7 +833,7 @@ grestore
 stroke
 grestore
 gsave
-266.112 266.112 103.104 38.016 clipbox
+103.104 38.016 266.112 266.112 rectclip
 271.6 212.208 p1_0
 gsave
 fill
@@ -824,7 +841,7 @@ grestore
 stroke
 grestore
 gsave
-266.112 266.112 103.104 38.016 clipbox
+103.104 38.016 266.112 266.112 rectclip
 312.222 171.229 p1_0
 gsave
 fill
@@ -832,7 +849,7 @@ grestore
 stroke
 grestore
 gsave
-266.112 266.112 103.104 38.016 clipbox
+103.104 38.016 266.112 266.112 rectclip
 271.988 212.427 p1_0
 gsave
 fill
@@ -840,7 +857,7 @@ grestore
 stroke
 grestore
 gsave
-266.112 266.112 103.104 38.016 clipbox
+103.104 38.016 266.112 266.112 rectclip
 293.318 198.304 p1_0
 gsave
 fill
@@ -848,7 +865,7 @@ grestore
 stroke
 grestore
 gsave
-266.112 266.112 103.104 38.016 clipbox
+103.104 38.016 266.112 266.112 rectclip
 307.938 179.977 p1_0
 gsave
 fill
@@ -856,7 +873,7 @@ grestore
 stroke
 grestore
 gsave
-266.112 266.112 103.104 38.016 clipbox
+103.104 38.016 266.112 266.112 rectclip
 231.753 218.938 p1_0
 gsave
 fill
@@ -864,7 +881,7 @@ grestore
 stroke
 grestore
 gsave
-266.112 266.112 103.104 38.016 clipbox
+103.104 38.016 266.112 266.112 rectclip
 307.358 181.266 p1_0
 gsave
 fill
@@ -872,7 +889,7 @@ grestore
 stroke
 grestore
 gsave
-266.112 266.112 103.104 38.016 clipbox
+103.104 38.016 266.112 266.112 rectclip
 229.653 218.864 p1_0
 gsave
 fill
@@ -880,7 +897,7 @@ grestore
 stroke
 grestore
 gsave
-266.112 266.112 103.104 38.016 clipbox
+103.104 38.016 266.112 266.112 rectclip
 164.067 162.402 p1_0
 gsave
 fill
@@ -888,7 +905,7 @@ grestore
 stroke
 grestore
 gsave
-266.112 266.112 103.104 38.016 clipbox
+103.104 38.016 266.112 266.112 rectclip
 185.454 197.76 p1_0
 gsave
 fill
@@ -896,7 +913,7 @@ grestore
 stroke
 grestore
 gsave
-266.112 266.112 103.104 38.016 clipbox
+103.104 38.016 266.112 266.112 rectclip
 294.347 197.706 p1_0
 gsave
 fill
@@ -904,15 +921,15 @@ grestore
 stroke
 grestore
 gsave
-266.112 266.112 103.104 38.016 clipbox
-229.675 218.775 p1_0
+103.104 38.016 266.112 266.112 rectclip
+229.674 218.775 p1_0
 gsave
 fill
 grestore
 stroke
 grestore
 gsave
-266.112 266.112 103.104 38.016 clipbox
+103.104 38.016 266.112 266.112 rectclip
 190.923 202.365 p1_0
 gsave
 fill
@@ -920,7 +937,7 @@ grestore
 stroke
 grestore
 gsave
-266.112 266.112 103.104 38.016 clipbox
+103.104 38.016 266.112 266.112 rectclip
 259.589 216.773 p1_0
 gsave
 fill
@@ -928,7 +945,7 @@ grestore
 stroke
 grestore
 gsave
-266.112 266.112 103.104 38.016 clipbox
+103.104 38.016 266.112 266.112 rectclip
 248.25 218.781 p1_0
 gsave
 fill
@@ -936,7 +953,7 @@ grestore
 stroke
 grestore
 gsave
-266.112 266.112 103.104 38.016 clipbox
+103.104 38.016 266.112 266.112 rectclip
 313.538 167.901 p1_0
 gsave
 fill
@@ -944,7 +961,7 @@ grestore
 stroke
 grestore
 gsave
-266.112 266.112 103.104 38.016 clipbox
+103.104 38.016 266.112 266.112 rectclip
 243.909 218.831 p1_0
 gsave
 fill
@@ -952,7 +969,7 @@ grestore
 stroke
 grestore
 gsave
-266.112 266.112 103.104 38.016 clipbox
+103.104 38.016 266.112 266.112 rectclip
 162.167 151.043 p1_0
 gsave
 fill
@@ -960,15 +977,15 @@ grestore
 stroke
 grestore
 gsave
-266.112 266.112 103.104 38.016 clipbox
-191.141 201.86 p1_0
+103.104 38.016 266.112 266.112 rectclip
+191.141 201.859 p1_0
 gsave
 fill
 grestore
 stroke
 grestore
 gsave
-266.112 266.112 103.104 38.016 clipbox
+103.104 38.016 266.112 266.112 rectclip
 314.948 161.719 p1_0
 gsave
 fill
@@ -976,7 +993,7 @@ grestore
 stroke
 grestore
 gsave
-266.112 266.112 103.104 38.016 clipbox
+103.104 38.016 266.112 266.112 rectclip
 223.239 216.257 p1_0
 gsave
 fill
@@ -984,7 +1001,7 @@ grestore
 stroke
 grestore
 gsave
-266.112 266.112 103.104 38.016 clipbox
+103.104 38.016 266.112 266.112 rectclip
 315.931 155.053 p1_0
 gsave
 fill
@@ -992,7 +1009,7 @@ grestore
 stroke
 grestore
 gsave
-266.112 266.112 103.104 38.016 clipbox
+103.104 38.016 266.112 266.112 rectclip
 201.796 207.671 p1_0
 gsave
 fill
@@ -1000,7 +1017,7 @@ grestore
 stroke
 grestore
 gsave
-266.112 266.112 103.104 38.016 clipbox
+103.104 38.016 266.112 266.112 rectclip
 258.397 215.109 p1_0
 gsave
 fill
@@ -1008,7 +1025,7 @@ grestore
 stroke
 grestore
 gsave
-266.112 266.112 103.104 38.016 clipbox
+103.104 38.016 266.112 266.112 rectclip
 304.97 181.536 p1_0
 gsave
 fill
@@ -1016,7 +1033,7 @@ grestore
 stroke
 grestore
 gsave
-266.112 266.112 103.104 38.016 clipbox
+103.104 38.016 266.112 266.112 rectclip
 269.189 210.322 p1_0
 gsave
 fill
@@ -1024,7 +1041,7 @@ grestore
 stroke
 grestore
 gsave
-266.112 266.112 103.104 38.016 clipbox
+103.104 38.016 266.112 266.112 rectclip
 168.376 164.443 p1_0
 gsave
 fill
@@ -1032,7 +1049,7 @@ grestore
 stroke
 grestore
 gsave
-266.112 266.112 103.104 38.016 clipbox
+103.104 38.016 266.112 266.112 rectclip
 314.34 130.393 p1_0
 gsave
 fill
@@ -1040,7 +1057,7 @@ grestore
 stroke
 grestore
 gsave
-266.112 266.112 103.104 38.016 clipbox
+103.104 38.016 266.112 266.112 rectclip
 264.026 211.019 p1_0
 gsave
 fill
@@ -1048,15 +1065,15 @@ grestore
 stroke
 grestore
 gsave
-266.112 266.112 103.104 38.016 clipbox
-262.604 211 p1_0
+103.104 38.016 266.112 266.112 rectclip
+262.604 210.999 p1_0
 gsave
 fill
 grestore
 stroke
 grestore
 gsave
-266.112 266.112 103.104 38.016 clipbox
+103.104 38.016 266.112 266.112 rectclip
 312.591 125.676 p1_0
 gsave
 fill
@@ -1064,7 +1081,7 @@ grestore
 stroke
 grestore
 gsave
-266.112 266.112 103.104 38.016 clipbox
+103.104 38.016 266.112 266.112 rectclip
 216.42 210.196 p1_0
 gsave
 fill
@@ -1072,7 +1089,7 @@ grestore
 stroke
 grestore
 gsave
-266.112 266.112 103.104 38.016 clipbox
+103.104 38.016 266.112 266.112 rectclip
 188.586 192.674 p1_0
 gsave
 fill
@@ -1080,7 +1097,7 @@ grestore
 stroke
 grestore
 gsave
-266.112 266.112 103.104 38.016 clipbox
+103.104 38.016 266.112 266.112 rectclip
 169.837 120.279 p1_0
 gsave
 fill
@@ -1088,7 +1105,7 @@ grestore
 stroke
 grestore
 gsave
-266.112 266.112 103.104 38.016 clipbox
+103.104 38.016 266.112 266.112 rectclip
 199.677 200.212 p1_0
 gsave
 fill
@@ -1096,7 +1113,7 @@ grestore
 stroke
 grestore
 gsave
-266.112 266.112 103.104 38.016 clipbox
+103.104 38.016 266.112 266.112 rectclip
 232.94 212.038 p1_0
 gsave
 fill
@@ -1104,7 +1121,7 @@ grestore
 stroke
 grestore
 gsave
-266.112 266.112 103.104 38.016 clipbox
+103.104 38.016 266.112 266.112 rectclip
 207.012 203.232 p1_0
 gsave
 fill
@@ -1112,7 +1129,7 @@ grestore
 stroke
 grestore
 gsave
-266.112 266.112 103.104 38.016 clipbox
+103.104 38.016 266.112 266.112 rectclip
 252.134 208.612 p1_0
 gsave
 fill
@@ -1120,7 +1137,7 @@ grestore
 stroke
 grestore
 gsave
-266.112 266.112 103.104 38.016 clipbox
+103.104 38.016 266.112 266.112 rectclip
 172.222 153.976 p1_0
 gsave
 fill
@@ -1128,7 +1145,7 @@ grestore
 stroke
 grestore
 gsave
-266.112 266.112 103.104 38.016 clipbox
+103.104 38.016 266.112 266.112 rectclip
 171.046 135.451 p1_0
 gsave
 fill
@@ -1136,7 +1153,7 @@ grestore
 stroke
 grestore
 gsave
-266.112 266.112 103.104 38.016 clipbox
+103.104 38.016 266.112 266.112 rectclip
 181.264 172.271 p1_0
 gsave
 fill
@@ -1144,15 +1161,15 @@ grestore
 stroke
 grestore
 gsave
-266.112 266.112 103.104 38.016 clipbox
-179.552 168.619 p1_0
+103.104 38.016 266.112 266.112 rectclip
+179.552 168.618 p1_0
 gsave
 fill
 grestore
 stroke
 grestore
 gsave
-266.112 266.112 103.104 38.016 clipbox
+103.104 38.016 266.112 266.112 rectclip
 184.227 176.77 p1_0
 gsave
 fill
@@ -1160,7 +1177,7 @@ grestore
 stroke
 grestore
 gsave
-266.112 266.112 103.104 38.016 clipbox
+103.104 38.016 266.112 266.112 rectclip
 247.093 205.525 p1_0
 gsave
 fill
@@ -1168,7 +1185,7 @@ grestore
 stroke
 grestore
 gsave
-266.112 266.112 103.104 38.016 clipbox
+103.104 38.016 266.112 266.112 rectclip
 213.815 198.962 p1_0
 gsave
 fill
@@ -1176,7 +1193,7 @@ grestore
 stroke
 grestore
 gsave
-266.112 266.112 103.104 38.016 clipbox
+103.104 38.016 266.112 266.112 rectclip
 179.714 116.711 p1_0
 gsave
 fill
@@ -1184,7 +1201,7 @@ grestore
 stroke
 grestore
 gsave
-266.112 266.112 103.104 38.016 clipbox
+103.104 38.016 266.112 266.112 rectclip
 288.242 181.084 p1_0
 gsave
 fill
@@ -1192,7 +1209,7 @@ grestore
 stroke
 grestore
 gsave
-266.112 266.112 103.104 38.016 clipbox
+103.104 38.016 266.112 266.112 rectclip
 177.325 148.63 p1_0
 gsave
 fill
@@ -1200,7 +1217,7 @@ grestore
 stroke
 grestore
 gsave
-266.112 266.112 103.104 38.016 clipbox
+103.104 38.016 266.112 266.112 rectclip
 180.003 153.425 p1_0
 gsave
 fill
@@ -1208,7 +1225,7 @@ grestore
 stroke
 grestore
 gsave
-266.112 266.112 103.104 38.016 clipbox
+103.104 38.016 266.112 266.112 rectclip
 185.633 115.581 p1_0
 gsave
 fill
@@ -1216,7 +1233,7 @@ grestore
 stroke
 grestore
 gsave
-266.112 266.112 103.104 38.016 clipbox
+103.104 38.016 266.112 266.112 rectclip
 289.691 117.607 p1_0
 gsave
 fill
@@ -1224,7 +1241,7 @@ grestore
 stroke
 grestore
 gsave
-266.112 266.112 103.104 38.016 clipbox
+103.104 38.016 266.112 266.112 rectclip
 272.95 180.254 p1_0
 gsave
 fill
@@ -1232,7 +1249,7 @@ grestore
 stroke
 grestore
 gsave
-266.112 266.112 103.104 38.016 clipbox
+103.104 38.016 266.112 266.112 rectclip
 292.292 137.617 p1_0
 gsave
 fill
@@ -1240,7 +1257,7 @@ grestore
 stroke
 grestore
 gsave
-266.112 266.112 103.104 38.016 clipbox
+103.104 38.016 266.112 266.112 rectclip
 282.365 168.654 p1_0
 gsave
 fill
@@ -1248,7 +1265,7 @@ grestore
 stroke
 grestore
 gsave
-266.112 266.112 103.104 38.016 clipbox
+103.104 38.016 266.112 266.112 rectclip
 203.986 174.679 p1_0
 gsave
 fill
@@ -1256,7 +1273,7 @@ grestore
 stroke
 grestore
 gsave
-266.112 266.112 103.104 38.016 clipbox
+103.104 38.016 266.112 266.112 rectclip
 197.782 166.33 p1_0
 gsave
 fill
@@ -1264,7 +1281,7 @@ grestore
 stroke
 grestore
 gsave
-266.112 266.112 103.104 38.016 clipbox
+103.104 38.016 266.112 266.112 rectclip
 207.445 102.232 p1_0
 gsave
 fill
@@ -1272,7 +1289,7 @@ grestore
 stroke
 grestore
 gsave
-266.112 266.112 103.104 38.016 clipbox
+103.104 38.016 266.112 266.112 rectclip
 288.277 136.312 p1_0
 gsave
 fill
@@ -1280,7 +1297,7 @@ grestore
 stroke
 grestore
 gsave
-266.112 266.112 103.104 38.016 clipbox
+103.104 38.016 266.112 266.112 rectclip
 245.687 185.993 p1_0
 gsave
 fill
@@ -1288,7 +1305,7 @@ grestore
 stroke
 grestore
 gsave
-266.112 266.112 103.104 38.016 clipbox
+103.104 38.016 266.112 266.112 rectclip
 197.768 158.446 p1_0
 gsave
 fill
@@ -1296,7 +1313,7 @@ grestore
 stroke
 grestore
 gsave
-266.112 266.112 103.104 38.016 clipbox
+103.104 38.016 266.112 266.112 rectclip
 281.282 159.951 p1_0
 gsave
 fill
@@ -1304,7 +1321,7 @@ grestore
 stroke
 grestore
 gsave
-266.112 266.112 103.104 38.016 clipbox
+103.104 38.016 266.112 266.112 rectclip
 232.732 182.356 p1_0
 gsave
 fill
@@ -1312,15 +1329,15 @@ grestore
 stroke
 grestore
 gsave
-266.112 266.112 103.104 38.016 clipbox
-196.804 141.802 p1_0
+103.104 38.016 266.112 266.112 rectclip
+196.803 141.802 p1_0
 gsave
 fill
 grestore
 stroke
 grestore
 gsave
-266.112 266.112 103.104 38.016 clipbox
+103.104 38.016 266.112 266.112 rectclip
 203.425 116.141 p1_0
 gsave
 fill
@@ -1328,7 +1345,7 @@ grestore
 stroke
 grestore
 gsave
-266.112 266.112 103.104 38.016 clipbox
+103.104 38.016 266.112 266.112 rectclip
 271.34 161.521 p1_0
 gsave
 fill
@@ -1336,7 +1353,7 @@ grestore
 stroke
 grestore
 gsave
-266.112 266.112 103.104 38.016 clipbox
+103.104 38.016 266.112 266.112 rectclip
 211.403 114.815 p1_0
 gsave
 fill
@@ -1344,7 +1361,7 @@ grestore
 stroke
 grestore
 gsave
-266.112 266.112 103.104 38.016 clipbox
+103.104 38.016 266.112 266.112 rectclip
 236.776 103.577 p1_0
 gsave
 fill
@@ -1352,7 +1369,7 @@ grestore
 stroke
 grestore
 gsave
-266.112 266.112 103.104 38.016 clipbox
+103.104 38.016 266.112 266.112 rectclip
 218.327 165.465 p1_0
 gsave
 fill
@@ -1360,7 +1377,7 @@ grestore
 stroke
 grestore
 gsave
-266.112 266.112 103.104 38.016 clipbox
+103.104 38.016 266.112 266.112 rectclip
 217.626 161.106 p1_0
 gsave
 fill
@@ -1368,7 +1385,7 @@ grestore
 stroke
 grestore
 gsave
-266.112 266.112 103.104 38.016 clipbox
+103.104 38.016 266.112 266.112 rectclip
 236.503 107.868 p1_0
 gsave
 fill
@@ -1376,7 +1393,7 @@ grestore
 stroke
 grestore
 gsave
-266.112 266.112 103.104 38.016 clipbox
+103.104 38.016 266.112 266.112 rectclip
 249.078 161.381 p1_0
 gsave
 fill
@@ -1384,7 +1401,7 @@ grestore
 stroke
 grestore
 gsave
-266.112 266.112 103.104 38.016 clipbox
+103.104 38.016 266.112 266.112 rectclip
 246.49 159.836 p1_0
 gsave
 fill
@@ -1392,7 +1409,7 @@ grestore
 stroke
 grestore
 gsave
-266.112 266.112 103.104 38.016 clipbox
+103.104 38.016 266.112 266.112 rectclip
 228.821 152.291 p1_0
 gsave
 fill
@@ -1400,7 +1417,7 @@ grestore
 stroke
 grestore
 gsave
-266.112 266.112 103.104 38.016 clipbox
+103.104 38.016 266.112 266.112 rectclip
 237.109 155.212 p1_0
 gsave
 fill
@@ -1408,8 +1425,8 @@ grestore
 stroke
 grestore
 gsave
-266.112 266.112 103.104 38.016 clipbox
-236.46 129.603 p1_0
+103.104 38.016 266.112 266.112 rectclip
+236.461 129.603 p1_0
 gsave
 fill
 grestore
