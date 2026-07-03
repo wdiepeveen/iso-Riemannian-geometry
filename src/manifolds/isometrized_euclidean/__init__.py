@@ -91,7 +91,7 @@ class l2IsometrizedEuclidean(Manifold):
             else:
                 return y
     
-    def geodesic(self, x, y, t):
+    def geodesic(self, x, y, t, no_grad=True):
         """
         
         :param x: N x M x [Epoint] 
@@ -99,62 +99,100 @@ class l2IsometrizedEuclidean(Manifold):
         :param t: K
         :return: N x M x L x K x [Epoint] 
         """
-        with torch.no_grad():
-            tau = self.tau(x, y, t)
+        if not no_grad:
+            tau = self.tau(x, y, t, no_grad=False)
             return self.euclidean.geodesic(x, y, tau)
+        else:
+            with torch.no_grad():
+                tau = self.tau(x, y, t, no_grad=False)
+                return self.euclidean.geodesic(x, y, tau)
 
-    def log(self, x, y): 
+    def log(self, x, y, no_grad=True): 
         """
         
         :param x: N x M x [Epoint]
         :param y: N x L x [Epoint]
         :return: N x M x L x [Evector] 
         """
-        with torch.no_grad():
+        if not no_grad:
             logs = self.euclidean.log(x, y)
-            iso_dists = self.distance(x, y)
+            iso_dists = self.distance(x, y, no_grad=False)  # shape: N x M x L
             norm_axes = list(range(3, logs.dim()))
             norms = logs.norm(2, norm_axes)  # shape: N x M x L
             for _ in norm_axes:
                 norms = norms.unsqueeze(-1)
                 iso_dists = iso_dists.unsqueeze(-1)
             return (iso_dists / norms) * logs
+        else:
+            with torch.no_grad():
+                return self.log(x, y, no_grad=False)
         
-    def exp(self, x, X):
+    def exp(self, x, X, no_grad=True):
         """
         :param x: N x [Epoint]
         :param X: N x M x [Evector]
         :return: N x M x [Epoint]
         """
-        with torch.no_grad():
+        if not no_grad:
             N, M = X.shape[:2]
-            x_base = x[:, None].expand(-1, M, *x.shape[1:])  # N x M x [Epoint]
+            x_base = x[:, None].expand(-1, M, *x.shape[1:]).clone()   # break aliasing
+            Xn = X.clone()
+
             for i in range(self.num_intervals):
                 if i == 0:
-                    c = self.euclidean.exp(x, X / self.num_intervals) # N x M x [Epoint]
+                    c = self.euclidean.exp(x.clone(), (Xn / self.num_intervals).clone())
                 else:
+                    c_flat = c.reshape(N * M, 1, *x.shape[1:]).clone()
+                    x_flat = x_base.reshape(N * M, 1, *x.shape[1:]).clone()
+                    X_flat = Xn.reshape(N * M, 1, 1, *X.shape[2:]).clone()
+
                     transported = self.parallel_transport(
-                        x_base.reshape(N*M, 1, *x.shape[1:]),           # N*M x 1 x [Epoint]
-                        X.reshape(N*M, 1, 1, *X.shape[2:]),             # N*M x 1 x 1 x [Evector]
-                        c.reshape(N*M, 1, *x.shape[1:])                 # N*M x 1 x [Epoint]
-                    )[:,0,0,0].reshape(X.shape)                         # N x M [Evector]
-                    # compute next point along geodesic
-                    c = self.euclidean.exp(c.reshape(N*M, *x.shape[1:]), transported.reshape(N*M, 1, *X.shape[2:]) / self.num_intervals).reshape(X.shape) # N x M x [Epoint]
+                        x_flat,
+                        X_flat,
+                        c_flat,
+                        no_grad=False
+                    )[:, 0, 0, 0].reshape(X.shape).clone()
+
+                    c = self.euclidean.exp(
+                        c.reshape(N * M, *x.shape[1:]).clone(),
+                        (transported.reshape(N * M, 1, *X.shape[2:]) / self.num_intervals).clone()
+                    ).reshape(X.shape).clone()
 
             return c
+            # N, M = X.shape[:2]
+            # x_base = x[:, None].expand(-1, M, *x.shape[1:])  # N x M x [Epoint]
+            # for i in range(self.num_intervals):
+            #     if i == 0:
+            #         c = self.euclidean.exp(x, X / self.num_intervals) # N x M x [Epoint]
+            #     else:
+            #         transported = self.parallel_transport(
+            #             x_base.reshape(N*M, 1, *x.shape[1:]),           # N*M x 1 x [Epoint]
+            #             X.reshape(N*M, 1, 1, *X.shape[2:]),             # N*M x 1 x 1 x [Evector]
+            #             c.reshape(N*M, 1, *x.shape[1:])                 # N*M x 1 x [Epoint]
+            #         )[:,0,0,0].reshape(X.shape)                         # N x M [Evector]
+            #         # compute next point along geodesic
+            #         c = self.euclidean.exp(c.reshape(N*M, *x.shape[1:]), transported.reshape(N*M, 1, *X.shape[2:]) / self.num_intervals).reshape(X.shape) # N x M x [Epoint]
+
+            # return c
+        else:
+            with torch.no_grad():
+                return self.exp(x, X, no_grad=False)
         
-    def distance(self, x, y): 
+    def distance(self, x, y, no_grad=True): 
         """
         Summed segment length of discrete geodesic approximation
         :param x: N x M x [Epoint]
         :param y: N x L x [Epoint]
         :return: N x M x L
         """
-        with torch.no_grad():
+        if not no_grad:
             geos = self.euclidean.geodesic(x, y, torch.linspace(0., 1., self.num_intervals + 1, device=x.device))
             return ((geos[:,:,:,1:] - geos[:,:,:,:-1])**2).sum([i for i in range(4, len(geos.shape))]).sqrt().sum(-1)
+        else:
+            with torch.no_grad():
+                return self.distance(x, y, no_grad=False)
     
-    def parallel_transport(self, x, X, y):
+    def parallel_transport(self, x, X, y, no_grad=True):
         """
 
         :param x: N x M x [Epoint]
@@ -162,7 +200,7 @@ class l2IsometrizedEuclidean(Manifold):
         :param y: N x L x [Epoint]
         :return: N x M x L x K x [Evector]
         """
-        with torch.no_grad():
+        if not no_grad:
             log_x_y = self.euclidean.log(x, y) # N x M x L x [Evector]
             log_x_y_norm = log_x_y.norm(2, [i for i in range(3, len(log_x_y.shape))]) # N x M x L
             log_y_x = self.euclidean.log(y, x).transpose(1,2) # N x M x L x [Evector]
@@ -170,8 +208,11 @@ class l2IsometrizedEuclidean(Manifold):
 
             prefactor = log_x_y_norm / log_y_x_norm
             return prefactor[:,:,:,None,None] * self.euclidean.parallel_transport(x, X, y)
+        else:
+            with torch.no_grad():
+                return self.parallel_transport(x, X, y, no_grad=False)
     
-    def tau(self, x, y, t):
+    def tau(self, x, y, t, no_grad=True):
         """
 
         :param x: N x M x [Epoint]
@@ -179,7 +220,7 @@ class l2IsometrizedEuclidean(Manifold):
         :param t: K
         :return: N x M x L x K 
         """
-        with torch.no_grad():
+        if not no_grad:
             N, M = x.shape[0:2]
             L = y.shape[1]
 
@@ -192,4 +233,7 @@ class l2IsometrizedEuclidean(Manifold):
             
             # compute tau at continuous points
             return torch.clamp(torch.sum(1 / self.num_intervals * torch.clamp((t[None,None,None,:,None] - disc_tau[:,:,:,None,:-1]) / (disc_tau[:,:,:,None,1:] - disc_tau[:,:,:,None,:-1]), 0., 1.), -1), 0., 1.)
+        else:
+            with torch.no_grad():
+                return self.tau(x, y, t, no_grad=False)
     
