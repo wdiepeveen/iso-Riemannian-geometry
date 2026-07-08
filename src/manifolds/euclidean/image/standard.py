@@ -78,7 +78,7 @@ class StandardImageEuclidean(ImageEuclidean):
         """
 
         :param x: N x M x (C x H x W)
-        :param X: N x M x K x (C x H x W)
+        :param X: N x M x L x K x (C x H x W)
         :param y: N x L x (C x H x W)
         :return: N x M x L x K x (C x H x W)
         """

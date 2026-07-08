@@ -135,23 +135,17 @@ class l2IsometrizedEuclidean(Manifold):
         """
         if not no_grad:
             N, M = X.shape[:2]
-            x_base = x[:, None].expand(-1, M, *x.shape[1:]).clone()   # break aliasing
-            Xn = X.clone()
-
             for i in range(self.num_intervals):
                 if i == 0:
-                    c = self.euclidean.exp(x.clone(), (Xn / self.num_intervals).clone())
+                    c = self.euclidean.exp(x, X / self.num_intervals)
                 else:
-                    c_flat = c.reshape(N * M, 1, *x.shape[1:]).clone()
-                    x_flat = x_base.reshape(N * M, 1, *x.shape[1:]).clone()
-                    X_flat = Xn.reshape(N * M, 1, 1, *X.shape[2:]).clone()
 
                     transported = self.parallel_transport(
-                        x_flat,
-                        X_flat,
-                        c_flat,
+                        x.reshape(N, 1, *x.shape[1:]),
+                        X.reshape(N, 1, M, 1, *X.shape[2:]),
+                        c.reshape(N, M, *x.shape[1:]),
                         no_grad=False
-                    )[:, 0, 0, 0].reshape(X.shape).clone()
+                    )[:, 0, :, 0].reshape(X.shape).clone() # N x M x [Evector]
 
                     c = self.euclidean.exp(
                         c.reshape(N * M, *x.shape[1:]).clone(),
@@ -159,21 +153,6 @@ class l2IsometrizedEuclidean(Manifold):
                     ).reshape(X.shape).clone()
 
             return c
-            # N, M = X.shape[:2]
-            # x_base = x[:, None].expand(-1, M, *x.shape[1:])  # N x M x [Epoint]
-            # for i in range(self.num_intervals):
-            #     if i == 0:
-            #         c = self.euclidean.exp(x, X / self.num_intervals) # N x M x [Epoint]
-            #     else:
-            #         transported = self.parallel_transport(
-            #             x_base.reshape(N*M, 1, *x.shape[1:]),           # N*M x 1 x [Epoint]
-            #             X.reshape(N*M, 1, 1, *X.shape[2:]),             # N*M x 1 x 1 x [Evector]
-            #             c.reshape(N*M, 1, *x.shape[1:])                 # N*M x 1 x [Epoint]
-            #         )[:,0,0,0].reshape(X.shape)                         # N x M [Evector]
-            #         # compute next point along geodesic
-            #         c = self.euclidean.exp(c.reshape(N*M, *x.shape[1:]), transported.reshape(N*M, 1, *X.shape[2:]) / self.num_intervals).reshape(X.shape) # N x M x [Epoint]
-
-            # return c
         else:
             with torch.no_grad():
                 return self.exp(x, X, no_grad=False)
@@ -196,7 +175,7 @@ class l2IsometrizedEuclidean(Manifold):
         """
 
         :param x: N x M x [Epoint]
-        :param X: N x M x K x [Evector]
+        :param X: N x M x L x K x [Evector]
         :param y: N x L x [Epoint]
         :return: N x M x L x K x [Evector]
         """

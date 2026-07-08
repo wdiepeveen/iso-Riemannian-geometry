@@ -117,7 +117,7 @@ class PullbackImageEuclidean(ImageEuclidean):
         """
 
         :param x: N x M x (C x H x W)
-        :param X: N x M x K x (C x H x W)
+        :param X: N x M x L x K x (C x H x W)
         :param y: N x L x (C x H x W)
         :return: N x M x L x K x (C x H x W)
         """
@@ -128,7 +128,7 @@ class PullbackImageEuclidean(ImageEuclidean):
         # Flatten and map through phi
         phi_x = self.phi.forward(x.reshape(-1, C, H, W)).reshape(N, M, C, H, W)
         phi_y = self.phi.forward(y.reshape(-1, C, H, W)).reshape(N, L, C, H, W)
-        phi_X = self.phi.differential_forward((x[:, :, None].repeat(1, 1, K, 1, 1, 1)).reshape(-1, C, H, W), X.reshape(-1, C, H, W)).reshape(N, M, K, C, H, W)
+        phi_X = self.phi.differential_forward((x[:, :, None, None].repeat(1, 1, L, K, 1, 1, 1)).reshape(-1, C, H, W), X.reshape(-1, C, H, W)).reshape(N, M, L, K, C, H, W)
 
         # parallel transport in phi-space
         phi_pt = self.manifold.parallel_transport(phi_x, phi_X, phi_y).reshape(N, M, L, K, C, H, W)

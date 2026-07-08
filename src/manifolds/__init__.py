@@ -86,7 +86,7 @@ class Manifold:
         """
 
         :param x: N x M x [Mpoint]
-        :param X: N x M x K x [Mvector]
+        :param X: N x M x L x K x [Mvector]
         :param y: N x L x [Mpoint]
         :return: N x M x L x K [Mvector]
         """

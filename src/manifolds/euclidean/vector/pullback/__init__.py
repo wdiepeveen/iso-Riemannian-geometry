@@ -130,18 +130,18 @@ class PullbackVectorEuclidean(VectorEuclidean):
         """
 
         :param x: N x M x d
-        :param X: N x M x K x d
+        :param X: N x M x L x K x d
         :param y: N x L x d
         :return: N x M x L x K x d
         """
         N, M, d = x.shape
         L = y.shape[1]
-        K = X.shape[2]
+        K = X.shape[3]
 
         # Flatten and map through phi
         phi_x = self.phi.forward(x.reshape(-1, d)).reshape(N, M, d)
         phi_y = self.phi.forward(y.reshape(-1, d)).reshape(N, L, d)
-        phi_X = self.phi.differential_forward((x[:, :, None].repeat(1, 1, K, 1)).reshape(-1, d), X.reshape(-1, d)).reshape(N, M, K, d)
+        phi_X = self.phi.differential_forward((x[:, :, None, None].repeat(1, 1, L, K, 1)).reshape(-1, d), X.reshape(-1, d)).reshape(N, M, L, K, d)
 
         # parallel transport in phi-space
         phi_pt = self.manifold.parallel_transport(phi_x, phi_X, phi_y).reshape(N, M, L, K, d)

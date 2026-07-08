@@ -79,9 +79,9 @@ class StandardVectorEuclidean(VectorEuclidean):
         """
 
         :param x: N x M x d
-        :param X: N x M x K x d
+        :param X: N x M x L x K x d
         :param y: N x L x d
         :return: N x M x L x K x d
         """
-        return X[:,:,None,:].repeat(1, 1, y.shape[1], 1, 1)
+        return X
     

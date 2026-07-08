@@ -111,7 +111,7 @@ class ImageFromVectorEuclidean(Euclidean):
         """
 
         :param x: N x M x (C x H x W)
-        :param X: N x M x K x (C x H x W)
+        :param X: N x M x L x K x (C x H x W)
         :param y: N x L x (C x H x W)
         :return: N x M x L x K x (C x H x W)
         """
@@ -120,7 +120,7 @@ class ImageFromVectorEuclidean(Euclidean):
         K = X.shape[2]
         return self.vector_euclidean.parallel_transport(
             x.reshape(N, M, self.C * self.H * self.W),
-            X.reshape(N, M, K, self.C * self.H * self.W),
+            X.reshape(N, M, L, K, self.C * self.H * self.W),
             y.reshape(N, L, self.C * self.H * self.W)
-            ).reshape(N, N, L, K, self.C, self.H, self.W)
+            ).reshape(N, M, L, K, self.C, self.H, self.W)
     
