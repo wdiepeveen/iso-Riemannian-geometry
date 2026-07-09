@@ -138,19 +138,24 @@ class l2IsometrizedEuclidean(Manifold):
             for i in range(self.num_intervals):
                 if i == 0:
                     c = self.euclidean.exp(x, X / self.num_intervals)
+                    log_x_c = X / self.num_intervals
                 else:
+                    log_c_x = self.euclidean.log(c, x[:,None])[:,:,0]
+                    log_c_x_norm = log_c_x.norm(2, [i for i in range(2, len(log_c_x.shape))]) # N x M
+                    log_x_c_norm = log_x_c.norm(2, [i for i in range(2, len(log_x_c.shape))]) # N x M
+                    log_x_c = log_x_c + (log_x_c_norm / log_c_x_norm).reshape(N, M, *[1 for _ in range(2, len(log_x_c.shape))]) * X / self.num_intervals
+                    c = self.euclidean.exp(x, log_x_c)
+                    # transported = self.parallel_transport(
+                    #     x.reshape(N, 1, *x.shape[1:]),
+                    #     X.reshape(N, 1, M, 1, *X.shape[2:]),
+                    #     c.reshape(N, M, *x.shape[1:]),
+                    #     no_grad=False
+                    # )[:, 0, :, 0].reshape(X.shape).clone() # N x M x [Evector]
 
-                    transported = self.parallel_transport(
-                        x.reshape(N, 1, *x.shape[1:]),
-                        X.reshape(N, 1, M, 1, *X.shape[2:]),
-                        c.reshape(N, M, *x.shape[1:]),
-                        no_grad=False
-                    )[:, 0, :, 0].reshape(X.shape).clone() # N x M x [Evector]
-
-                    c = self.euclidean.exp(
-                        c.reshape(N * M, *x.shape[1:]).clone(),
-                        (transported.reshape(N * M, 1, *X.shape[2:]) / self.num_intervals).clone()
-                    ).reshape(X.shape).clone()
+                    # c = self.euclidean.exp(
+                    #     c.reshape(N * M, *x.shape[1:]).clone(),
+                    #     (transported.reshape(N * M, 1, *X.shape[2:]) / self.num_intervals).clone()
+                    # ).reshape(X.shape).clone()
 
             return c
         else:
@@ -185,8 +190,8 @@ class l2IsometrizedEuclidean(Manifold):
             log_y_x = self.euclidean.log(y, x).transpose(1,2) # N x M x L x [Evector]
             log_y_x_norm = log_y_x.norm(2, [i for i in range(3, len(log_y_x.shape))]) # N x M x L
 
-            prefactor = log_x_y_norm / log_y_x_norm
-            return prefactor[:,:,:,None,None] * self.euclidean.parallel_transport(x, X, y)
+            prefactor = (log_x_y_norm / log_y_x_norm).reshape(x.shape[0], x.shape[1], y.shape[1], *[1 for _ in range(3, len(X.shape))])
+            return prefactor * self.euclidean.parallel_transport(x, X, y)
         else:
             with torch.no_grad():
                 return self.parallel_transport(x, X, y, no_grad=False)
