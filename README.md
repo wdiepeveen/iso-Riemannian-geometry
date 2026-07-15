@@ -27,5 +27,5 @@ To produce the results in [1].
   *  `double_gaussian_affine_unbend.ipynb`,
   *  `double_gaussian_affine_anisotropic_nflow.ipynb`,
   *  `double_gaussian_additive_nflow.ipynb`.
-* For the hemisphere data results run `sphere_additive_nflow.ipynb`.
+* For the quadruple data results run `quadruple_gaussian_additive_nflow.ipynb`.
 * For the mnist data results run `mnist_additive_nflow.ipynb`.
