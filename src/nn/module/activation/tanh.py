@@ -14,6 +14,11 @@ class TanhActivation(Activation):
         if x.dim() == 2:  # Vector data (batch, features)
             x_powers = torch.tanh(x).unsqueeze(-1) ** powers
             return torch.sum(self.coefficients * x_powers, dim=-1)
+        elif x.dim() == 3:  # Sequence data (batch, channels, length)
+            assert x.shape[1] == self.d
+            x_powers = torch.tanh(x).unsqueeze(-1) ** powers  # (batch, channels, length, order)
+            coefficients = self.coefficients.view(self.d, 1, self.order+1)
+            return torch.sum(coefficients * x_powers, dim=-1)
         elif x.dim() == 4:  # Image data (batch, channels, height, width)
             assert x.shape[1] == self.d
             x_powers = torch.tanh(x).unsqueeze(-1) ** powers  # (batch, channels, height, width, order)
