@@ -1,0 +1,146 @@
+{
+  "epoch": 14,
+  "checkpoint_files": [
+    "last_model.pth",
+    "epoch_14_model.pth",
+    "best_model.pth"
+  ],
+  "data_id": "621543c916c4cd18",
+  "reference_count": 32,
+  "reference_dataset_indices": [
+    5199,
+    28342,
+    10345,
+    64577,
+    24360,
+    20413,
+    5538,
+    42619,
+    32201,
+    10224,
+    43075,
+    56572,
+    38572,
+    2449,
+    41833,
+    69030,
+    32709,
+    46278,
+    60574,
+    21321,
+    57580,
+    31411,
+    58388,
+    62582,
+    26061,
+    51562,
+    10018,
+    23274,
+    37054,
+    48266,
+    69592,
+    46522
+  ],
+  "target_validation_batch_indices": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9
+  ],
+  "interpolation_times": [
+    0.0,
+    0.1111111119389534,
+    0.2222222238779068,
+    0.3333333432674408,
+    0.4444444477558136,
+    0.5555555820465088,
+    0.6666666865348816,
+    0.7777777910232544,
+    0.8888888955116272,
+    1.0
+  ],
+  "barycentre_metric": "Euclidean metric pulled back by phi.nflow._transform",
+  "barycentre_latent_max_abs_error": 3.4868717193603516e-05,
+  "target_inverse_max_abs_error": 2.8461217880249023e-06,
+  "barycentre_difference_rms_normalized_pixels": 0.4173179566860199,
+  "euclidean_barycentre_display_clipped_fraction": 0.0,
+  "riemannian_barycentre_display_clipped_fraction": 0.0598551444709301,
+  "targets": [
+    {
+      "validation_batch_index": 0,
+      "endpoint_max_abs_error_before_display_alignment": 2.2202730178833008e-06,
+      "curve_difference_rms_normalized_pixels": 0.23810265958309174,
+      "euclidean_display_clipped_fraction": 0.012829589657485485,
+      "riemannian_display_clipped_fraction": 0.03277181088924408
+    },
+    {
+      "validation_batch_index": 1,
+      "endpoint_max_abs_error_before_display_alignment": 2.250075340270996e-06,
+      "curve_difference_rms_normalized_pixels": 0.11707495898008347,
+      "euclidean_display_clipped_fraction": 0.0093994140625,
+      "riemannian_display_clipped_fraction": 0.02159016951918602
+    },
+    {
+      "validation_batch_index": 2,
+      "endpoint_max_abs_error_before_display_alignment": 1.7881393432617188e-06,
+      "curve_difference_rms_normalized_pixels": 0.09107422083616257,
+      "euclidean_display_clipped_fraction": 0.011381021700799465,
+      "riemannian_display_clipped_fraction": 0.02337443083524704
+    },
+    {
+      "validation_batch_index": 3,
+      "endpoint_max_abs_error_before_display_alignment": 2.8461217880249023e-06,
+      "curve_difference_rms_normalized_pixels": 0.14831659197807312,
+      "euclidean_display_clipped_fraction": 0.00839843787252903,
+      "riemannian_display_clipped_fraction": 0.02854207344353199
+    },
+    {
+      "validation_batch_index": 4,
+      "endpoint_max_abs_error_before_display_alignment": 1.7061829566955566e-06,
+      "curve_difference_rms_normalized_pixels": 0.13563565909862518,
+      "euclidean_display_clipped_fraction": 0.01213785819709301,
+      "riemannian_display_clipped_fraction": 0.01487833634018898
+    },
+    {
+      "validation_batch_index": 5,
+      "endpoint_max_abs_error_before_display_alignment": 1.996755599975586e-06,
+      "curve_difference_rms_normalized_pixels": 0.12486106157302856,
+      "euclidean_display_clipped_fraction": 0.012485758401453495,
+      "riemannian_display_clipped_fraction": 0.02637939527630806
+    },
+    {
+      "validation_batch_index": 6,
+      "endpoint_max_abs_error_before_display_alignment": 1.773238182067871e-06,
+      "curve_difference_rms_normalized_pixels": 0.19959376752376556,
+      "euclidean_display_clipped_fraction": 0.009830729104578495,
+      "riemannian_display_clipped_fraction": 0.03807779774069786
+    },
+    {
+      "validation_batch_index": 7,
+      "endpoint_max_abs_error_before_display_alignment": 2.1010637283325195e-06,
+      "curve_difference_rms_normalized_pixels": 0.10497880727052689,
+      "euclidean_display_clipped_fraction": 0.010119629092514515,
+      "riemannian_display_clipped_fraction": 0.02644653245806694
+    },
+    {
+      "validation_batch_index": 8,
+      "endpoint_max_abs_error_before_display_alignment": 1.9371509552001953e-06,
+      "curve_difference_rms_normalized_pixels": 0.13452763855457306,
+      "euclidean_display_clipped_fraction": 0.01567586325109005,
+      "riemannian_display_clipped_fraction": 0.03088785894215107
+    },
+    {
+      "validation_batch_index": 9,
+      "endpoint_max_abs_error_before_display_alignment": 1.6093254089355469e-06,
+      "curve_difference_rms_normalized_pixels": 0.16285085678100586,
+      "euclidean_display_clipped_fraction": 0.008085123263299465,
+      "riemannian_display_clipped_fraction": 0.02180989645421505
+    }
+  ]
+}
